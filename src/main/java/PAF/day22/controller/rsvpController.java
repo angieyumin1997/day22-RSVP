@@ -43,21 +43,16 @@ public class rsvpController {
         rsvp rsvp = new rsvp();
         rsvp = rsvpRepository.checkExistingEmail(email);
 
-        if(rsvp.getCount()==0){
         rsvp.setName(name);
         rsvp.setPhone(phone);
         rsvp.setEmail(email);
         rsvp.setComments(comments);
         Date sqlDate = Date.valueOf(confirmation_date);
         rsvp.setConfirmation_date(sqlDate);
+
+        if(rsvp.getCount()==0){
         rsvpRepository.add(rsvp);
         }else{
-        rsvp.setName(name);
-        rsvp.setPhone(phone);
-        rsvp.setEmail(email);
-        rsvp.setComments(comments);
-        Date sqlDate = Date.valueOf(confirmation_date);
-        rsvp.setConfirmation_date(sqlDate);
         rsvpRepository.update(rsvp);
         }
 
